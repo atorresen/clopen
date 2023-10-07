@@ -1,0 +1,19 @@
+.graphic {
+  display: inline-block;
+  height: 100%;
+  width: 80%;
+}
+
+.buttons {
+  display: inline-block;
+  margin-left: 4%;
+}
+
+h1 {
+  border: solid;
+  border-width: 2px;
+  font-family: "Trebuchet MS", "Tahoma", sans-serif;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+  <title>clopen</title>
+</head>
+
+<body>
+
+  <div class="graphic">
+    <svg viewBox="0 0 1400 800">
+      <defs>
+        <pattern id="door" width="1" height="1">
+          <image href="images/door.jpg" width="330" height="730" x="0" y="0" />
+        </pattern>
+
+        <pattern id="sky" patternUnits="userSpaceOnUse" width="3376" height="1698">
+          <image href="images/sky.jpg" x="0" y="0" width="3376" height="1698" />
+        </pattern>
+      </defs>
+
+      <rect id="universe" width="100%" height="100%" style="fill: url(#sky)" />
+      <rect id="boundary" width="350" height="740" x="325" y="90" style="fill: white" />
+      <rect id="interior" width="330" height="730" x="335" y="100" style="fill: white" />
+    </svg>
+  </div>
+
+  <div class="buttons">
+    <h1 id="openButton" onclick="openFnc()">open</h1>
+    <h1 id="closeButton" onclick="closeFnc()">close</h1>
+  </div>
+
+
+  <script>
+    var openQ = false;
+    var closedQ = false;
+
+    function openFnc() {
+      if (openQ && closedQ) {
+        closedNotOpen()
+      } else if (openQ && !closedQ) {
+        notOpenNotClosed()
+      } else if (!openQ && closedQ) {
+        openClosed()
+      } else {
+        openNotClosed()
+      }
+      toggleOpen(openQ);
+    };
+
+    function closeFnc() {
+      if (openQ && closedQ) {
+        openNotClosed()
+      } else if (openQ && !closedQ) {
+        openClosed()
+      } else if (!openQ && closedQ) {
+        notOpenNotClosed()
+      } else {
+        closedNotOpen()
+      }
+      toggleClosed(closedQ);
+    };
+
+
+    // buttons
+    function toggleOpen(openVal) {
+      if (openVal) {
+        openQ = false;
+        document.getElementById("openButton").style.color = "black";
+      } else {
+        openQ = true;
+        document.getElementById("openButton").style.color = "tomato";
+      }
+    };
+
+    function toggleClosed(closedVal) {
+      if (closedVal) {
+        closedQ = false;
+        document.getElementById("closeButton").style.color = "black";
+      } else {
+        closedQ = true;
+        document.getElementById("closeButton").style.color = "red";
+      }
+    };
+
+
+    // graphic
+    function openNotClosed() {
+      console.log("open and !closed");
+      document.getElementById("interior").style.fill = "url(#sky)"
+      document.getElementById("boundary").style.fill = "white"
+      document.getElementById("universe").style.fill = "black"
+    };
+
+    function closedNotOpen() {
+      console.log("!open and closed");
+      document.getElementById("interior").style.fill = "url(#door)"
+      document.getElementById("boundary").style.fill = "white"
+      document.getElementById("universe").style.fill = "black"
+    };
+
+    function openClosed() {
+      console.log("open and closed");
+      document.getElementById("interior").style.fill = "black";
+      document.getElementById("boundary").style.fill = "url(#sky)"
+      document.getElementById("universe").style.fill = "black"
+    };
+
+    function notOpenNotClosed() {
+      console.log("!open and !closed");
+      document.getElementById("interior").style.fill = "white"
+      document.getElementById("boundary").style.fill = "white"
+      document.getElementById("universe").style.fill = "url(#sky)"
+    };
+  </script>
+
+</body>
+
+</html>
