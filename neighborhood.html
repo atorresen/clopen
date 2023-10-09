@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+  <title>neighborhood</title>
+</head>
+
+<body>
+
+  <div class="graphic">
+    <svg id="neighborhoodGraphic" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -1.5 6 3">
+      <circle id="selected" cx="0.5" cy="0.25" r="0.018" fill="tomato" />
+    </svg>
+  </div>
+
+  <div class="buttons">
+    <h1 id="moveButton" onclick="moveFnc()">move</h1>
+  </div>
+
+  <script>
+    // generate random points
+    const numPts = 800;
+    const neighborhoodGraphic = document.querySelector("svg");
+
+    var randomAngles = randomArray(numPts, 6.28);
+    var randomRadii = randomArray(numPts, 1.25);
+
+    for (let i = 0; i < numPts; i++) {
+      let pt = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      pt.setAttribute("cx", randomRadii[i] * Math.cos(randomAngles[i]));
+      pt.setAttribute("cy", randomRadii[i] * Math.sin(randomAngles[i]));
+      pt.setAttribute("r", "0.015");
+      neighborhoodGraphic.prepend(pt)
+    };
+
+
+    // select and surround a single point
+    function moveFnc() {
+      const numBallPts = 10;
+
+      var randomAngle = Math.random() * 6.28;
+      var randomRadius = Math.random() * 0.8;
+
+      var ballX = randomRadius * Math.cos(randomAngle);
+      ballY = randomRadius * Math.sin(randomAngle);
+      var ballRadius = 0.1;
+
+      document.getElementById("selected").setAttribute("cx", ballX);
+      document.getElementById("selected").setAttribute("cy", ballY);
+
+      let neighbor = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      neighbor.setAttribute("cx", ballX + 0.1 * (Math.random() - 0.5));
+      neighbor.setAttribute("cy", ballY + 0.1 * (Math.random() - 0.5));
+      neighbor.setAttribute("r", "0.015");
+      neighbor.setAttribute("fill", "lightpink");
+      neighborhoodGraphic.append(neighbor)
+    };
+
+    function randomArray(length, max) {
+      var res = [];
+      while (res.length < length) {
+        var r = Math.random() * max;
+        res.push(r);
+      };
+      return res
+    };
+  </script>
+
+
+</body>
+
+</html>
