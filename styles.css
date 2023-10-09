@@ -57,3 +57,10 @@ a {
   display: inline-block;
   width: 800px;
 }
+
+/* inverse graphic (fixed dimensions) */
+/* .inverseGraphic {
+  display: inline-block;
+  width: 60%;
+  height: 800px;
+} */

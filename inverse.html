@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/icon.ico">
+    <title>inverse</title>
+  </head>
+  <body>
+
+    <div class="graphic">
+      <svg id="inverseGraphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5">
+        <rect x="0" y="0" height="5" width="0.2" fill="tomato" />
+      </svg>
+    </div>
+
+    <div class="buttons">
+      <h1 id="addButton" onclick="addRect()">add</h1>
+    </div>
+
+    <div class="backButton"><a href="index.html">back</a></div>
+
+    <script>
+      var unitWidth = 0.2;
+      var unitHeight = 5;
+      var numRects = 1;
+      var newX = unitWidth;
+      var currentWidth = unitWidth;
+
+      const inverseGraphic = document.querySelector("svg");
+
+      // add an overlapping rectangle
+      function addRect() {
+        if (newX < 10) {
+          currentWidth = numRects * unitWidth;
+          newX = currentWidth + unitWidth/(Math.random());
+        } else {
+          currentWidth = unitWidth;
+          newX = 0.1;
+        };
+        numRects = numRects + 1;
+
+        console.log(newX);
+
+        let newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        newRect.setAttribute("x", newX);
+        newRect.setAttribute("y", 0);
+        newRect.setAttribute("height", unitHeight);
+        newRect.setAttribute("width", unitWidth);
+        newRect.setAttribute("fill", "#ff113355");
+        inverseGraphic.append(newRect)
+      };
+    </script>
+
+  </body>
+</html>
