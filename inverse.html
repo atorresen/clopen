@@ -6,11 +6,12 @@
     <link rel="icon" href="images/icon.ico">
     <title>inverse</title>
   </head>
-  <body>
+  <body style="background-color: #ff1133">
 
     <div class="graphic">
-      <svg id="inverseGraphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5">
-        <rect x="0" y="0" height="5" width="0.2" fill="tomato" />
+      <svg id="inverseGraphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5"
+        style="background-color: #fff">
+        <rect x="0" y="0" height="5" width="0.2" fill="#ff113355" />
       </svg>
     </div>
 
@@ -31,11 +32,12 @@
 
       // add an overlapping rectangle
       function addRect() {
-        if (newX < 10) {
+        if (newX < 8) {
           currentWidth = numRects * unitWidth;
           newX = currentWidth + unitWidth/(Math.random());
         } else {
           currentWidth = unitWidth;
+          numRects = 2;
           newX = 0.1;
         };
         numRects = numRects + 1;
