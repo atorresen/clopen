@@ -12,8 +12,8 @@
 
   <div class="orGraphic">
     <svg id="inclusiveOr" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -3 8 6">
-      <circle id="A" cx="-1" cy="0" r="1.85" fill="#11223344" />
-      <circle id="B" cx="1" cy="0" r="1.85" fill="#66778899" />
+      <circle id="A" cx="-1" cy="0" r="1.85" fill="#def" />
+      <circle id="B" cx="1" cy="0" r="1.85" fill="#abcabc55" />
     </svg>
   </div>
 
@@ -49,18 +49,18 @@
       if (id == "and") {
         val = andQ;
         dVal = "m -2.116764,-2.6732581 c -0.6588778,0.4096139 -0.9941028,1.2603069 -0.793798,2.00934268 0.1121051,0.45084543 0.4020359,0.85394989 0.793798,1.10364561 0.6588777,-0.40961393 0.9941027,-1.26030687 0.7937979,-2.00934259 -0.1121888,-0.4509747 -0.401935,-0.8538265 -0.7937979,-1.1036457 z";
-        styleVal = "stroke: #579; stroke-width: 0.07; fill: none;";
+        styleVal = "fill: #09109199";
       } else if (id == "or") {
         val = orQ;
         dVal = "M 3.125 0 A 6.992126 6.992126 0 0 0 -3.7792969 6.9921875 A 6.992126 6.992126 0 0 0 3.2128906 13.984375 A 6.992126 6.992126 0 0 0 6.9921875 12.875 A 6.992126 6.992126 0 0 0 10.771484 13.984375 A 6.992126 6.992126 0 0 0 17.763672 6.9921875 A 6.992126 6.992126 0 0 0 10.771484 0 A 6.992126 6.992126 0 0 0 6.9921875 1.109375 A 6.992126 6.992126 0 0 0 3.2128906 0 A 6.992126 6.992126 0 0 0 3.125 0 z ";
-        styleVal = "stroke: #331095; stroke-width: 0.2; fill: none;";
+        styleVal = "fill: #78978999";
       } else if (id == "either") {
         val = eitherQ;
         // addition to graphic is a circle (done below)
       } else {
         val = neitherQ;
         dVal = "M -4,-3 H 4 V 3 H -4 Z";
-        styleVal = "stroke: #975; stroke-width: 0.14; fill: none;";
+        styleVal = "fill: #44008899";
       };
 
 
@@ -76,6 +76,7 @@
             newOutline.setAttribute("cx", 2);
             newOutline.setAttribute("cy", 2);
             newOutline.setAttribute("r", 0.5);
+            newOutline.setAttribute("fill", "#12312399");
             newOutline.setAttribute("id", outlineID);
           } else {
             newOutline = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -87,7 +88,11 @@
             newOutline.setAttribute("id", outlineID);
 
         };
-        vennGraphic.append(newOutline)
+        if (id == "neither") {
+          vennGraphic.prepend(newOutline)
+        } else {
+          vennGraphic.append(newOutline)
+        }
       };
 
       toggleButton(id, val);
