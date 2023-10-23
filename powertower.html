@@ -3,8 +3,12 @@
 
 <head>
   <meta charset="utf-8">
+
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
+
+  <script src="explanationCounter.js"></script>
+
   <title>power tower</title>
 </head>
 
@@ -25,10 +29,23 @@
 
   <div class="backButton"><a href="index.html">back</a></div>
 
+  <div class="explanation" id="explain">
+    <h4 id="p0">The Worst Student in the Class</h4>
+    <p id="p1">A power tower is repeated exponentiation, a natural generalization of the concepts of
+    multiplication as repeated addition and exponentiation as repeated multiplication.</p>
+    <p id="p2">Power in math classrooms is not distributed equally.</p>
+    <p id="p3">I say things that people don't hear until someone else repeats them.
+    I think I am the worst student in the class, and thinking so makes me so.</p>
+    <p id="p4">I teeter on the power tower that I am afforded as a human, while boys pull out
+    blocks like it's a Jenga game I never agreed to play.</p>
+  </div>
+
   <script>
+    var counter = 0;
     var num = 0;
 
     function powerShift() {
+      revealExplanation(4, 7, counter++);
       var newNum = Math.floor(Math.random() * 10);
       var pathPts = document.getElementById("powertowerPath").getAttribute("d");
       let newPathPts = pathPts.replaceAll(String(num), String(newNum));

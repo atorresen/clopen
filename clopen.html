@@ -3,8 +3,12 @@
 
 <head>
   <meta charset="utf-8">
+
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
+
+  <script src="explanationCounter.js"></script>
+
   <title>clopen</title>
 </head>
 
@@ -35,12 +39,27 @@
 
   <div class="backButton"><a href="index.html">back</a></div>
 
+  <div class="explanation" id="explain">
+    <h4 id="p0">Not quite opposites</h4>
+    <p id="p1">A mathematical set can be open, closed, both open and closed,
+      or neither open nor closed.</p>
+    <p id="p2">The openness or closedness of a set can be determined by
+      considering the relation of a set to its boundary.
+      A set is open if it does not contain its boundary.</p>
+    <p id="p3">A boundary is defined not only relative to a set itself, but also
+      in relation to the choice of universe in which the set resides.</p>
+    <p id="p4">A boundary (or lack thereof) is related simultaneously to the
+      interior and exterior of what it contains. It is both an enclosure and a
+      possibility - a frontier and a dead end.</p>
+  </div>
 
   <script>
+    var counter = 0;
     var openQ = false;
     var closedQ = false;
 
     function openFnc() {
+      revealExplanation(4, 5, counter++);
       if (openQ && closedQ) {
         closedNotOpen()
       } else if (openQ && !closedQ) {
@@ -54,6 +73,7 @@
     };
 
     function closeFnc() {
+      revealExplanation(4, 5, counter++);
       if (openQ && closedQ) {
         openNotClosed()
       } else if (openQ && !closedQ) {

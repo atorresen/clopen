@@ -10,7 +10,7 @@
   <link rel="icon" href="images/icon.ico">
 
   <script src="p5/p5.js"></script>
-  <script src="p5/p5.dom.js"></script>
+  <script src="explanationCounter.js"></script>
 
   <title>or</title>
 </head>
@@ -26,7 +26,21 @@
 
   <div class="backButton"><a href="index.html">back</a></div>
 
+  <div class="explanation" id="explain">
+    <h4 id="p0">The Inclusive Or</h4>
+    <p id="p1">In mathematics, the word "or" is understood to be inclusive;
+      "Yes or No" is true if Yes is true, if No is true, and if Yes and No are both true.</p>
+    <p id="p2">The use of "or" is associated with Boolean logic and binary
+    assertions of true or false.</p>
+    <p id="p3">Nevertheless, the assumed inclusive nature of "or" demonstrates
+    that truthfullness may lie in being not one or the other but both (or all).</p>
+    <p id="p4">The inclusive "or" envelops an entirety with a small word that
+    in other contexts presupposes an exclusionary choice.</p>
+  </div>
+
   <script>
+    var counter = 0;
+
     function setup() {
       var myCanvas = createCanvas(1000, 650, WEBGL);
       myCanvas.parent("orGraphic");
@@ -34,6 +48,7 @@
 
     var backgroundQ = true;
     function changeBackground() {
+      revealExplanation(4, 2, counter++);
       backgroundQ = !backgroundQ;
       if (backgroundQ) {
         document.getElementById("bothButton").style.color = "black"

@@ -2,8 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/icon.ico">
+
+    <script src="explanationCounter.js"></script>
+
     <title>unit(y)</title>
   </head>
   <body style="background-color: #ff1133">
@@ -21,7 +25,16 @@
 
     <div class="backButton"><a href="index.html">back</a></div>
 
+    <div class="explanation" id="explain">
+      <h4 id="p0">Breaking by Building</h4>
+      <p id="p1">A "unit" is an invertible element of a ring.</p>
+      <p id="p2">The "unity" of a ring is the identity element of a ring.</p>
+      <p id="p3">Units cancel out other units to create a unity.</p>
+    </div>
+
     <script>
+      var counter = 0;
+
       var unitWidth = 0.2;
       var unitHeight = 5;
       var numRects = 1;
@@ -32,6 +45,7 @@
 
       // add an overlapping rectangle
       function addRect() {
+        revealExplanation(3, 7, counter++);
         if (newX < 8) {
           currentWidth = numRects * unitWidth;
           newX = currentWidth + unitWidth/(Math.random());

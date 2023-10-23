@@ -39,6 +39,10 @@ a {
   color: lightgray;
 }
 
+.backButton :hover {
+  text-decoration: underline;
+}
+
 
 /* or buttons (fixed width) */
 .orButton {
@@ -64,3 +68,17 @@ a {
   width: 60%;
   height: 800px;
 } */
+
+/* explanation text */
+.explanation {
+  color: lightgray;
+  margin: 100px 100px;
+}
+
+#p0, #p1, #p2, #p3, #p4, #p5 {
+  display: none;
+}
+
+#p0 {
+  font-style: italic;
+}
