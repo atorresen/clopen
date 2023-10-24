@@ -82,3 +82,12 @@ a {
 #p0 {
   font-style: italic;
 }
+
+/* form input fields */
+input {
+  margin: 1% 7%;
+}
+
+.numInput {
+  width: 30px;
+}

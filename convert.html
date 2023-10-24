@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="explanationCounter.js"></script>
+
+  <script src="p5/p5.js"></script>
+  <script src="explanationCounter.js"></script>
+
+  <title>convert</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="baseConvertGraphic"></div>
+
+  <div class="buttons">
+    <form id="baseConvertForm" action="/action_page.php">
+      <input type="text" id="expr" value="horizontal"><br>
+      <input type="number" class="numInput" step="1" id="from" value=23>
+      <input type="number" class="numInput" step="1" id="to" value=25>
+    </form>
+    <h1 id="convert" onclick="baseConvert()">go</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var charToDigit = {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "a": 10,
+      "b": 11,
+      "c": 12,
+      "d": 13,
+      "e": 14,
+      "f": 15,
+      "g": 16,
+      "h": 17,
+      "i": 18,
+      "j": 19,
+      "k": 20,
+      "l": 21,
+      "m": 22,
+      "n": 23,
+      "o": 24,
+      "p": 25,
+      "q": 26,
+      "r": 27,
+      "s": 28,
+      "t": 29,
+      "u": 30,
+      "v": 31,
+      "w": 32,
+      "x": 33,
+      "y": 34,
+      "z": 35
+    };
+
+    var canvasWidth = 1300;
+    var canvasHeight = 600;
+
+    function setup() {
+      var myCanvas = createCanvas(canvasWidth, canvasHeight);
+      myCanvas.parent("baseConvertGraphic");
+    };
+
+    function baseConvert() {
+      var inputs = document.getElementById("baseConvertForm");
+
+      // convert each inputted characeter into its corresponding digit
+      var word = inputs.elements[0].value;
+      word = word.toLowerCase().replace(/[^a-z]+/g, '');
+      console.log(word);
+      var chars = word.split("").reverse();
+
+      var charVals = [];
+      for (var i = 0; i < chars.length; i++) {
+        charVals[i] = charToDigit[chars[i]];
+      };
+
+      // convert from oldbase to newbase
+      var oldbase = inputs.elements[1].value;
+      var newbase = inputs.elements[2].value;
+
+      // convert the word digits from oldbase to base 10 (sum powers of oldbase)
+      var baseTenVal = (Array.from(
+        charVals,
+        (x, i) => (x * Math.pow(oldbase, i))
+      )).reduce(add, 0);
+
+      // convert the base ten value to newbase
+      var newBaseNum = baseTenVal.toString(newbase);
+
+      // get an array of the value corresponding to each digit in the newbase number
+      var newChars = newBaseNum.split("");
+      var newCharVals = [];
+      for (var i = 0; i < chars.length; i++) {
+        newCharVals[i] = charToDigit[newChars[i]];
+      };
+      console.log(newCharVals);
+
+      // draw rectangles corresponding to newbase digits
+      drawDigitRectangles(newCharVals)
+    };
+
+    function add(accumulator, a) {
+      return accumulator + a
+    };
+
+    function drawDigitRectangles(digits) {
+      clear();
+
+      var len = digits.length;
+      var maxWidth = 0.9 * canvasWidth;
+      var h = (0.75 * canvasHeight) / len;
+
+      for (let i = 0; i < len; i++) {
+        for (let j = 0; j < digits[i]; j++) {
+          var width = maxWidth / (digits[i]);
+          noStroke();
+
+          // alternate fill colors
+          if ((j % 2) == 0) {
+            if ((i % 2) == 0) {
+              fill("black")
+            } else {
+              fill("skyblue")
+            };
+          } else {
+            if ((i % 2) == 0) {
+              fill("skyblue")
+            } else {
+              fill("black")
+            };
+          };
+
+          // leave 0 rows blank
+          if (digits[i] > 0) {
+            rect(j * width, i * h, width, h);
+          } else {
+            i++
+          }
+        }
+      }
+    };
+  </script>
+
+
+</body>
+
+</html>
