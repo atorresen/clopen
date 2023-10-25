@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+  <script src="explanationCounter.js"></script>
+
+  <title>torus</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="porousTorusGraphic"></div>
+
+  <div class="buttons">
+    <h1 id="porousButton" onclick="makePores()">porous</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var porousQ = false;
+    var numHoles = 500;
+    var randomX = [];
+    var randomY = [];
+    var randomR = [];
+
+    function makePores() {
+      porousQ = !porousQ;
+
+      // choose new makePores
+      randomX = Array.from({length: numHoles}, () => Math.random() * imgSize);
+      randomY = Array.from({length: numHoles}, () => Math.random() * imgSize);
+      randomR = Array.from({length: numHoles}, () => Math.random() * 8 + 1);
+
+      // update selected button color
+      var button = document.getElementById("porousButton");
+      if (porousQ) {
+        button.style.color = "tomato"
+      } else {
+        button.style.color = "black"
+      }
+    };
+
+    let pores;
+    let plain;
+    var imgSize = 500;
+    function setup() {
+      var myCanvas = createCanvas(1000, 650, WEBGL);
+      myCanvas.parent("porousTorusGraphic");
+      pores = createGraphics(imgSize, imgSize);
+      plain = createGraphics(imgSize, imgSize);
+    };
+
+    function draw() {
+      plain.background(50, 50, 80);
+      pores.background(50, 50, 80);
+      pores.erase();
+      for (let i = 0; i < numHoles; i++) {
+        pores.circle(randomX[i], randomY[i], randomR[i]);
+      };
+
+      background(255);
+      rotateX(frameCount * 0.008);
+      rotateY(frameCount * 0.008);
+      noStroke();
+      if (porousQ) {
+        texture(pores)
+      } else {
+        texture(plain)
+      };
+      torus(120, 70);
+    };
+  </script>
+
+
+</body>
+
+</html>
