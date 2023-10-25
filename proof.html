@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="explanationCounter.js"></script>
+
+  <title>proof</title>
+</head>
+
+<body>
+
+  <div class="proofGraphic" id="proofGraphic">
+    <p id="truth">Let epsilon be greater than zero.</p>
+    <p id="proof" style="min-height: 1.25em"></p>
+  </div>
+
+  <div class="buttons">
+    <h1 id="truthButton" onclick="truth()">truth</h1>
+    <h1 id="proofButton" onclick="proof()">proof</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var nouns = ["epsilon", "x", "me", "you", "now", "never", "sooner", "later", "freedom", "failure", "tears",
+      "fear", "conversation", "zero", "forever", "smiling", "crying", "walking", "falling", "meat", "brains",
+      "tomorrow", "birth", "art", "honesty", "sincerity", "nothing", "mold", "smells", "love", "tension",
+      "them", "holidays", "hands", "music", "pages", "plastic", "waste"
+    ];
+    var verbs = ["be", "imply", "equal", "be greater than", "be less than", "listen to", "sing about", "wish for",
+      "dream of", "exude", "exclude", "save", "ignore", "create", "support", "tear down", "ignite", "sleep with",
+      "eat", "throw up", "light up", "grow", "lead", "follow", "persist through", "remember", "preach",
+      "speak", "separate", "divide", "clean", "learn from"
+    ];
+
+    function truth() {
+      var noun1 = nouns[Math.floor(Math.random() * (nouns.length))];
+      var verb = verbs[Math.floor(Math.random() * (verbs.length))];
+      var noun2 = nouns[Math.floor(Math.random() * (nouns.length))];
+      document.getElementById("truth").innerHTML = "Let " + noun1 + " " + verb + " " + noun2 + ".";
+      document.getElementById("proof").innerHTML = "";
+      document.getElementById("proofButton").style.color = "black";
+    };
+
+    var proofQ = false;
+
+    function proof() {
+      if (proofQ) {
+        document.getElementById("proof").innerHTML = "";
+        document.getElementById("proofButton").style.color = "black";
+        proofQ = false
+      } else {
+        document.getElementById("proof").innerHTML = "Believe that it is so. □";
+        document.getElementById("proofButton").style.color = "tomato";
+        proofQ = true
+      };
+    };
+  </script>
+
+
+</body>
+
+</html>

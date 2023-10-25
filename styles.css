@@ -62,12 +62,10 @@ a {
   width: 800px;
 }
 
-/* inverse graphic (fixed dimensions) */
-/* .inverseGraphic {
-  display: inline-block;
-  width: 60%;
-  height: 800px;
-} */
+/* proof graphic (text alignment) */
+.proofGraphic {
+  margin: 100px 50px;
+}
 
 /* explanation text */
 .explanation {
