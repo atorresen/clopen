@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>universe</title>
+</head>
+
+<body style="background-color: black">
+
+  <div class="graphic" id="universeGraphic"></div>
+
+  <div class="buttons">
+    <h1 id="travelButton" onclick="travel()" style="color: #444">travel</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    function setup() {
+      var myCanvas = createCanvas(windowWidth, windowHeight);
+      noLoop();
+      myCanvas.style('display', 'block');
+      myCanvas.parent("universeGraphic");
+    };
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    };
+
+    var s = 40;
+    var tX = 250;
+    var tY = 150;
+    var a = 0;
+
+    function travel() {
+      s = Math.random() * height/4;
+      tX = Math.random() * width/2;
+      tY = Math.random() * height/2;
+      a = Math.random() * 7;
+      draw()
+    };
+
+    function draw() {
+      background(0);
+      fill(255);
+      circle(tX, tY, s);
+
+      // circular text
+      var str = "This is all there is.";
+      var r = 0.8 * s;
+
+      var pos = a;
+      for (var i = 0; i < str.length; i++) {
+        var currentChar = str.charAt(i);
+        var w = textWidth(currentChar);
+
+        // center within character width
+        pos += w/2;
+
+        // angle = arclength/radius
+        var theta = pos/r;
+
+        fill(230);
+        rotate(theta - PI);
+        text(currentChar, tX + r * Math.cos(theta), tY + r * Math.sin(theta));
+
+        pos += w/2;
+      }
+    };
+  </script>
+
+
+</body>
+
+</html>
