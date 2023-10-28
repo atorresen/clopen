@@ -25,7 +25,7 @@
 
   <script>
     function setup() {
-      var myCanvas = createCanvas(windowWidth, 500);
+      var myCanvas = createCanvas(windowWidth, 600);
       myCanvas.parent("realGraphic");
     };
 
@@ -43,7 +43,7 @@
       for (var i = windowWidth / size; i > 0; i--) {
         noStroke();
         fill(Math.random() * 220);
-        rect(0, 200, size * i, size);
+        rect(0, 50, size * i, size);
       }
     };
   </script>
