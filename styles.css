@@ -89,3 +89,15 @@ input {
 .numInput {
   width: 30px;
 }
+
+/* buttons table on index.html */
+.buttonsTable {
+	display: table;
+}
+.buttonsTable tr {
+	display: table-cell;
+}
+.buttonsTable tr td {
+	display: block;
+  width: 280px;
+}
