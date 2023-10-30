@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>model</title>
+</head>
+
+<body>
+
+  <div class="graphic">
+    <img id="modelGraphic" src="images/models/model1.png" alt="modelGraphic" height="700">
+  </div>
+
+  <div class="buttons">
+    <h1 id="nextButton" onclick="next()">walk</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var modelNum = 2;
+
+    function next() {
+      var nextModel = "images/models/model" + modelNum + ".png";
+      document.getElementById("modelGraphic").src = nextModel;
+      document.getElementById("modelGraphic").style.marginLeft = "margin: 0 " + 10 * modelNum + "0 0";
+      if (modelNum < 26) {
+        modelNum++
+      } else {
+        modelNum = 1
+      }
+    };
+  </script>
+
+
+</body>
+
+</html>
