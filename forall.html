@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>∀</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="forallGraphic"></div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    let citizens = [];
+    let radius = 20;
+
+    class Citizen {
+      constructor(pos) {
+        this.pos = pos;
+        this.vel = createVector(0, 0)
+        this.speed = 0;
+      }
+
+      update() {
+        let mouseVector = createVector(mouseX, mouseY)
+        if (this.pos.dist(mouseVector) < radius) {
+          this.vel = mouseVector.sub(this.pos).normalize().mult(-1);
+          this.speed = 6;
+        } else {
+          this.vel.rotate(random(-0.1, 0.1));
+          this.speed = 1;
+        }
+        this.pos.add(p5.Vector.mult(this.vel, this.speed));
+        this.pos.x = constrain(this.pos.x, 0, width)
+        this.pos.y = constrain(this.pos.y, 0, height)
+        if (this.pos.x == 0 || this.pos.x == width)
+          this.vel.x *= -1
+        if (this.pos.y == 0 || this.pos.y == height)
+          this.vel.y *= -1
+      }
+
+      draw() {
+        push();
+        translate(this.pos.x, this.pos.y);
+        if (this.pos.x < width / 2 && this.pos.y < height / 2) {
+          fill("blue")
+        } else {
+          if ((round(this.pos.y) % floor(height / 13)) < 7) {
+            fill("red")
+          } else {
+            fill("white")
+          }
+        };
+        noStroke();
+        circle(0, 0, 10);
+        pop();
+      }
+    }
+
+    function setup() {
+      createCanvas(950, 500);
+      for (let i = 20; i < width; i = i + 20) {
+        for (let j = 20; j < height; j = j + 20) {
+          citizens.push(new Citizen(createVector(i, j)));
+        }
+      }
+    }
+
+    function draw() {
+      background(35);
+      for (let citizen of citizens) {
+        citizen.update();
+        citizen.draw();
+      }
+    }
+  </script>
+
+
+</body>
+
+</html>
