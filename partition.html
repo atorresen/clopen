@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>partition</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="partitionGraphic"></div>
+
+  <div class="buttons">
+    <h1 id="refineButton" onclick="refine()">refine</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var t = 0;
+
+    var refVal = 200;
+    var shift = 0;
+
+    function setup() {
+      var myCanvas = createCanvas(800, 450, WEBGL);
+      myCanvas.parent("partitionGraphic");
+    };
+
+    function refine() {
+      shift = Math.random(refVal);
+      if (refVal > 10) {
+        refVal = refVal - 10
+      } else {
+        refVal = refVal/2
+      };
+    };
+
+    function draw() {
+      background(255);
+      stroke("tomato");
+      var scale = 100;
+
+      t = t + 0.005 * max(1/refVal, 1);
+      rotateY(t);
+
+      for (i = 1; i < 5; i++) {
+        beginShape(TESS);
+        for (j = 0; j < width; j = j + refVal) {
+          fill(200, 200, 200, 18);
+          vertex(
+            cos((i * j) % 360 + t) * 2 * scale + shift,
+            sin((i * j) % 360) * scale + shift,
+            cos((i * i) - j / 360 - t) * scale + shift
+          )
+        };
+        endShape();
+      }
+    };
+  </script>
+
+
+</body>
+
+</html>
