@@ -93,6 +93,7 @@ input {
 /* buttons table on index.html */
 .buttonsTable {
 	display: table;
+  margin: 15% 7%;
 }
 .buttonsTable tr {
 	display: table-cell;
