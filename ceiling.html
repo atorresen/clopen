@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>ceiling</title>
+</head>
+
+<body>
+
+
+  <div class="graphic" id="ceilingGraphic"></div>
+
+  <div class="buttons">
+    <h1 id="spreadBorderButton" onclick="spreadBorder()">spread</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    //adapted from @CCodeMadrid : https://editor.p5js.org/ntsutae/sketches/r6QRM_YGk
+
+    let w = 1000, h = 650, t = 0;
+
+    var borderWidth = 15;
+
+    function setup() {
+      frameRate(1000);
+      var myCanvas = createCanvas(w, h);
+      myCanvas.parent("ceilingGraphic");
+    }
+
+    function draw() {
+      t++;
+      background("#0e0");
+      T(w / 2);
+
+      if (19 < (t % 60) < 20) {
+        for (i = 0; i < (15 - borderWidth); i++) {
+
+          x = random(0, w);
+          y = random(0, h);
+
+          fill("#bbbbbb99");
+          noStroke();
+          ellipse(x, y, random(3, 5), random(3, 5));
+        }
+      }
+    }
+
+    function T(x, y = x, s = x) {
+      let n = noise(x / w, y / w, (mag(x - w / 2, y - h / 2) + t) / w) - 0.5;
+
+      if (abs(n) > map(s, 1, w / 2, 0.01, 1)) {
+        fill(s < borderWidth ? "#444" : "#111") + square(x - s, y - s, s * 2)
+      } else if ((s /= 2) > 1) {
+        T(x + s, y + s, s) + T(x + s, y - s, s) + T(x - s, y + s, s) + T(x - s, y - s, s)
+      }
+    }
+
+    function spreadBorder() {
+        borderWidth = Math.random() * 30;
+    }
+
+  </script>
+
+</body>
+
+</html>
