@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>patch</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="patchGraphic"></div>
+
+  <div class="buttons">
+    <form id="patchForm" action="/action_page.php">
+      <input type="text" id="expr" value="annemarie"><br>
+      <!-- <input type="number" class="numInput" step="1" id="from" value=23>
+      <input type="number" class="numInput" step="1" id="to" value=25> -->
+    </form>
+    <h1 id="makePatch" onclick="makePatch()">go</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var charToDigit = {
+      "a": 1,
+      "b": 2,
+      "c": 3,
+      "d": 4,
+      "e": 5,
+      "f": 6,
+      "g": 7,
+      "h": 8,
+      "i": 9,
+      "j": 10,
+      "k": 11,
+      "l": 12,
+      "m": 13,
+      "n": 14,
+      "o": 15,
+      "p": 16,
+      "q": 17,
+      "r": 18,
+      "s": 19,
+      "t": 20,
+      "u": 21,
+      "v": 22,
+      "w": 23,
+      "x": 24,
+      "y": 25,
+      "z": 26
+    };
+
+    function setup() {
+      var myCanvas = createCanvas(600, 600);
+      myCanvas.parent("patchGraphic");
+    };
+
+    function makePatch() {
+      clear();
+
+      var inputs = document.getElementById("patchForm");
+
+      // convert each inputted characeter into its corresponding digit
+      var word = inputs.elements[0].value;
+      word = word.toLowerCase().replace(/[^a-z]+/g, '');
+      var chars = word.split("").reverse();
+
+      var charVals = [];
+      for (var i = 0; i < chars.length; i++) {
+        charVals[i] = charToDigit[chars[i]];
+      };
+
+      var angle = (2 * PI)/(charVals.length);
+      var scale = 14;
+
+      for (var i = 0; i < charVals.length; i++) {
+        for (var j = charVals[i]; j > 0; j -= 1) {
+          if (i % 2 == 1) {
+              if (j % 2 == 1) {
+              fill("black");
+            } else {
+              fill("lightblue");
+            }
+          } else {
+            if (j % 2 == 1) {
+            fill("lightblue");
+          } else {
+            fill("black");
+          }
+          };
+          noStroke();
+          var d = j * Math.floor(scale * 26/charVals[i]);
+          arc(
+            width / 2,
+            height / 2,
+            d,
+            d,
+            angle * i,
+            angle * (i + 1)
+          );
+        }
+      }
+    }
+  </script>
+
+
+</body>
+
+</html>
