@@ -69,6 +69,7 @@ a {
 /* proof graphic (text alignment) */
 .proofGraphic {
   margin: 100px 50px;
+  font-size: 1.8em;
 }
 
 /* explanation text */
