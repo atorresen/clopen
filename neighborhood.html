@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
 
-  <script src="explanationCounter.js"></script>
-
   <title>neighborhood</title>
 </head>
 
@@ -26,20 +24,7 @@
 
   <div class="backButton"><a href="index.html">back</a></div>
 
-  <div class="explanation" id="explain">
-    <h4 id="p0">Arbitrary closeness</h4>
-    <p id="p1">A mathematical neighborhood gives a sense of the "nearness" of objects even
-    when distances between them are not clearly defined.</p>
-    <p id="p2">A neighborhood is generally a very small space.
-    Nevertheless, it is infinitely populated with objects nearby eachother.</p>
-    <p id="p3">If you move to any object in a neighborhood, you can always find another
-      object (or a density of simlar objects) that is arbitrarily close to your original choice.</p>
-  </div>
-
-
   <script>
-    var counter = 0;
-
     // generate random points
     const numPts = 800;
     const neighborhoodGraphic = document.querySelector("svg");
@@ -58,7 +43,6 @@
 
     // select and surround a single point
     function moveFnc() {
-      revealExplanation(3, 7, counter++);
       const numBallPts = 10;
 
       var randomAngle = Math.random() * 6.28;
