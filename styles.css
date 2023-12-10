@@ -2,6 +2,10 @@ body {
   font-family: "Trebuchet MS", "Tahoma", sans-serif;
 }
 
+.todo {
+  color: limegreen;
+}
+
 /* h1 buttons */
 h1 {
   border: solid;
@@ -93,7 +97,7 @@ input {
 /* buttons table on index.html */
 .buttonsTable {
 	display: table;
-  margin: 15% 7%;
+  margin: 9% 7%;
 }
 .buttonsTable tr {
 	display: table-cell;
