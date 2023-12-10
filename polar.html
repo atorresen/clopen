@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+  <script src="explanationCounter.js"></script>
+
+  <title>polar</title>
+</head>
+
+<body>
+
+
+  <div class="graphic" id="polarGraphic"></div>
+
+  <div class="buttons">
+    <h1 id="spinButton" onclick="spin()">spin</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    function setup() {
+      var myCanvas = createCanvas(1000, 650, WEBGL);
+      myCanvas.parent("polarGraphic");
+    }
+
+    var spinQ = false;
+    var pause = 1;
+
+    function spin() {
+      spinQ = !spinQ;
+    }
+
+    function draw() {
+      background("white");
+      noFill();
+      stroke("#aaaaaa99");
+      if (spinQ) {
+        rotateY(frameCount * 0.002);
+      };
+      cylinder(10, 500);
+      if (spinQ) {
+        translate(0, -250);
+        rotateZ(PI / 2);
+        rotateY(PI / 2);
+        stroke("limegreen");
+        for (let i = 0; i < 80; i++) {
+          translate(
+            cos(frameCount * 0.01 + 100) * 50,
+            cos(frameCount * 0.01 + 100) * 50,
+            i * 0.3
+          );
+          rotateZ(frameCount * 0.002);
+          push();
+          cylinder(2, 20);
+          pop();
+        }
+      };
+    }
+  </script>
+
+</body>
+
+</html>
