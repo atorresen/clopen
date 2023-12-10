@@ -32,11 +32,15 @@
     var size = 10;
 
     function zoomIn() {
-      size = 2 * size;
+      if (size < width) {
+        size = 2 * size;
+      }
     };
 
     function zoomOut() {
-      size = size / 2;
+      if (size > width/500) {
+        size = size / 2;
+      }
     };
 
     function draw() {
