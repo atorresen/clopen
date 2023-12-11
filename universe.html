@@ -24,14 +24,10 @@
 
   <script>
     function setup() {
-      var myCanvas = createCanvas(windowWidth, windowHeight);
+      var myCanvas = createCanvas(800, 600);
       noLoop();
       myCanvas.style('display', 'block');
       myCanvas.parent("universeGraphic");
-    };
-
-    function windowResized() {
-      resizeCanvas(windowWidth, windowHeight);
     };
 
     var s = 40;
