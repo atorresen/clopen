@@ -6,6 +6,7 @@ body {
 h1 {
   border: solid;
   border-width: 2px;
+  font-size: 1.8rem;
   margin: 10px;
   padding: 10px;
   text-align: center;
@@ -21,7 +22,6 @@ a {
 
 .buttons {
   display: inline-block;
-  margin-left: 4%;
 }
 
 .buttons :hover {
@@ -68,12 +68,6 @@ a {
   font-size: 1.8em;
 }
 
-/* explanation text */
-.explanation {
-  color: lightgray;
-  margin: 100px 100px;
-}
-
 #p0, #p1, #p2, #p3, #p4, #p5 {
   display: none;
 }
@@ -91,15 +85,6 @@ input {
   width: 30px;
 }
 
-/* buttons table on index.html */
-.buttonsTable {
-	display: table;
-  margin: 2% 0;
-}
-.buttonsTable tr {
-	display: table-cell;
-}
-.buttonsTable tr td {
-	display: block;
-  width: 280px;
+.buttons {
+
 }
