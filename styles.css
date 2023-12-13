@@ -24,6 +24,11 @@ a {
   display: inline-block;
 }
 
+.pageButton {
+  margin-left: 2%;
+  display: inline-block;
+}
+
 .buttons :hover {
   color: tomato;
 }

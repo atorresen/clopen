@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
@@ -19,7 +18,7 @@
 
   <div class="graphic" id="orGraphic"></div>
 
-  <div class="buttons">
+  <div class="pageButton">
     <h1 id="bothButton" onclick="changeBackground()">both</h1>
   </div>
 
@@ -27,7 +26,7 @@
 
   <script>
     function setup() {
-      var myCanvas = createCanvas(1000, 650, WEBGL);
+      var myCanvas = createCanvas(windowWidth, 0.8 * windowHeight, WEBGL);
       myCanvas.parent("orGraphic");
     }
 

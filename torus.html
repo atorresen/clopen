@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
@@ -48,9 +49,9 @@
 
     let pores;
     let plain;
-    var imgSize = 500;
+    var imgSize = 400;
     function setup() {
-      var myCanvas = createCanvas(1000, 650, WEBGL);
+      var myCanvas = createCanvas(Math.max(0.7 * windowWidth, imgSize), 0.6 * windowHeight, WEBGL);
       myCanvas.parent("porousTorusGraphic");
       pores = createGraphics(imgSize, imgSize);
       plain = createGraphics(imgSize, imgSize);

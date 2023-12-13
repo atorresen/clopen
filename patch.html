@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
@@ -16,11 +17,9 @@
 
   <div class="graphic" id="patchGraphic"></div>
 
-  <div class="buttons">
+  <div class="pageButton">
     <form id="patchForm" action="/action_page.php">
       <input type="text" id="expr" value="annemarie"><br>
-      <!-- <input type="number" class="numInput" step="1" id="from" value=23>
-      <input type="number" class="numInput" step="1" id="to" value=25> -->
     </form>
     <h1 id="makePatch" onclick="makePatch()">go</h1>
   </div>
@@ -58,7 +57,8 @@
     };
 
     function setup() {
-      var myCanvas = createCanvas(600, 600);
+      var size = 0.5 * Math.max(windowWidth, windowHeight);
+      var myCanvas = createCanvas(size, Math.min(size, 600));
       myCanvas.parent("patchGraphic");
     };
 

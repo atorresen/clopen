@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
@@ -19,7 +18,7 @@
 
   <div class="graphic" id="ceilingGraphic"></div>
 
-  <div class="buttons">
+  <div class="pageButton">
     <h1 id="spreadBorderButton" onclick="spreadBorder()">spread</h1>
   </div>
 
@@ -28,20 +27,25 @@
   <script>
     //adapted from @CCodeMadrid : https://editor.p5js.org/ntsutae/sketches/r6QRM_YGk
 
-    let w = 1000, h = 650, t = 0;
+    var w, h;
+    var t = 0;
 
     var borderWidth = 15;
 
     function setup() {
       frameRate(1000);
+      if (windowWidth > 550) {w = 0.8 * windowWidth} else {w = 0.95 * windowWidth};
+      h = 0.82 * windowHeight;
       var myCanvas = createCanvas(w, h);
       myCanvas.parent("ceilingGraphic");
+      w = width;
+      h = height;
     }
 
     function draw() {
       t++;
       background("#0e0");
-      T(w / 2);
+      T(Math.max(w / 2, h));
 
       if (19 < (t % 60) < 20) {
         for (i = 0; i < (15 - borderWidth); i++) {

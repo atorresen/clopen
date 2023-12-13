@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
@@ -16,7 +17,7 @@
 
   <div class="graphic" id="baseConvertGraphic"></div>
 
-  <div class="buttons">
+  <div class="pageButton">
     <form id="baseConvertForm" action="/action_page.php">
       <input type="text" id="expr" value="horizontal"><br>
       <input type="number" min="2" max="35" class="numInput" step="1" id="from" value=23>
@@ -29,49 +30,23 @@
 
   <script>
     var charToDigit = {
-      "0": 0,
-      "1": 1,
-      "2": 2,
-      "3": 3,
-      "4": 4,
-      "5": 5,
-      "6": 6,
-      "7": 7,
-      "8": 8,
-      "9": 9,
-      "a": 10,
-      "b": 11,
-      "c": 12,
-      "d": 13,
-      "e": 14,
-      "f": 15,
-      "g": 16,
-      "h": 17,
-      "i": 18,
-      "j": 19,
-      "k": 20,
-      "l": 21,
-      "m": 22,
-      "n": 23,
-      "o": 24,
-      "p": 25,
-      "q": 26,
-      "r": 27,
-      "s": 28,
-      "t": 29,
-      "u": 30,
-      "v": 31,
-      "w": 32,
-      "x": 33,
-      "y": 34,
-      "z": 35
+      "0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8,
+      "9": 9, "a": 10, "b": 11, "c": 12, "d": 13, "e": 14, "f": 15, "g": 16,
+      "h": 17, "i": 18, "j": 19, "k": 20, "l": 21, "m": 22, "n": 23, "o": 24,
+      "p": 25, "q": 26, "r": 27, "s": 28, "t": 29, "u": 30, "v": 31, "w": 32,
+      "x": 33, "y": 34, "z": 35
     };
 
-    var canvasWidth = 1300;
-    var canvasHeight = 600;
+    var w, h;
 
     function setup() {
-      var myCanvas = createCanvas(canvasWidth, canvasHeight);
+      if (windowWidth > 550) {
+        w = 0.8 * windowWidth
+      } else {
+        w = 0.95 * windowWidth
+      };
+      h = 0.82 * windowHeight;
+      var myCanvas = createCanvas(w, h);
       myCanvas.parent("baseConvertGraphic");
     };
 
@@ -81,7 +56,6 @@
       // convert each inputted characeter into its corresponding digit
       var word = inputs.elements[0].value;
       word = word.toLowerCase().replace(/[^a-z]+/g, '');
-      console.log(word);
       var chars = word.split("").reverse();
 
       var charVals = [];
@@ -108,7 +82,6 @@
       for (var i = 0; i < chars.length; i++) {
         newCharVals[i] = charToDigit[newChars[i]];
       };
-      console.log(newCharVals);
 
       // draw rectangles corresponding to newbase digits
       drawDigitRectangles(newCharVals)
@@ -122,12 +95,12 @@
       clear();
 
       var len = digits.length;
-      var maxWidth = 0.9 * canvasWidth;
-      var h = (0.75 * canvasHeight) / len;
+      var maxWidth = 0.9 * w;
+      var hh = (0.75 * h) / len;
 
       for (let i = 0; i < len; i++) {
         for (let j = 0; j < digits[i]; j++) {
-          var width = maxWidth / (digits[i]);
+          var ww = maxWidth / (digits[i]);
           noStroke();
 
           // alternate fill colors
@@ -147,7 +120,7 @@
 
           // leave 0 rows blank
           if (digits[i] > 0) {
-            rect(j * width, i * h, width, h);
+            rect(j * ww, i * hh, ww, hh);
           } else {
             i++
           }

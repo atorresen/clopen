@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
@@ -24,7 +25,7 @@
 
   <script>
     function setup() {
-      var myCanvas = createCanvas(800, 600);
+      var myCanvas = createCanvas(screenWidth, screenHeight);
       noLoop();
       myCanvas.style('display', 'block');
       myCanvas.parent("universeGraphic");

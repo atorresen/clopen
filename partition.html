@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/icon.ico">
@@ -16,7 +17,7 @@
 
   <div class="graphic" id="partitionGraphic"></div>
 
-  <div class="buttons">
+  <div class="pageButton">
     <h1 id="refineButton" onclick="refine()">refine</h1>
   </div>
 
@@ -29,7 +30,7 @@
     var shift = 0;
 
     function setup() {
-      var myCanvas = createCanvas(800, 450, WEBGL);
+      var myCanvas = createCanvas(0.75 * windowWidth, 0.5 * windowHeight, WEBGL);
       myCanvas.parent("partitionGraphic");
     };
 
