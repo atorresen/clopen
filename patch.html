@@ -57,8 +57,7 @@
     };
 
     function setup() {
-      var size = 0.5 * Math.max(windowWidth, windowHeight);
-      var myCanvas = createCanvas(size, Math.min(size, 600));
+      var myCanvas = createCanvas(Math.min(windowWidth, 800), Math.min(windowHeight, 600));
       myCanvas.parent("patchGraphic");
     };
 
