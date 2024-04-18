@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>unknown</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="unknownGraphic"></div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    var petals = [];
+    const numPetals = 10;
+    var numClicks = 0;
+
+    function setup() {
+      createCanvas(600, 400);
+      for (let t = 0; t < TWO_PI; t += TWO_PI / numPetals) {
+        petals.push(new Petal(t))
+      }
+    }
+
+    function Petal(t) {
+      this.t = t;
+      this.x = 70 * cos(this.t) + width / 2;
+      this.y = 70 * sin(this.t) + height / 2;
+
+      this.col = color(255);
+
+      this.display = function() {
+        noStroke();
+        fill(this.col);
+        push();
+        translate(this.x, this.y);
+        rotate(this.t - PI / 2);
+        ellipse(0, 0, 40, 80)
+        pop();
+      }
+
+      this.pluck = function() {
+        var d = dist(this.x, this.y, mouseX, mouseY);
+        if (d < 20) {
+          this.col = color(0, 200, 100);
+        }
+      }
+
+      this.grow = function() {
+        this.col = color(255);
+      }
+    }
+
+    function mousePressed() {
+      numClicks++;
+      for (var i = 0; i < numPetals; i++) {
+        petals[i].pluck();
+      }
+      if (numClicks > numPetals - 1) {
+        petals[int(random(0, numPetals))].grow()
+      }
+    }
+
+    function draw() {
+      background(color(0, 200, 100));
+
+      for (var i = 0; i < numPetals; i++) {
+        petals[i].display()
+      }
+
+      fill(color(255, 220, 0));
+      ellipse(width/2, height/2, 95, 95);
+    }
+  </script>
+
+
+</body>
+
+</html>
