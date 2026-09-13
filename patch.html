@@ -18,9 +18,9 @@
   <div class="graphic" id="patchGraphic"></div>
 
   <div class="pageButton">
-    <form id="patchForm" action="/action_page.php">
-      <input type="text" id="expr" value="hello"><br>
-    </form>
+    <textarea id="expr" value="hello" rows="1" cols = "20"
+          style="font-size: 1.25rem; resize: none"
+      >hello</textarea><br>
     <h1 id="makePatch" onclick="makePatch()">go</h1>
   </div>
 
@@ -64,10 +64,10 @@
     function makePatch() {
       clear();
 
-      var inputs = document.getElementById("patchForm");
+      var inputs = document.getElementById("expr");
 
       // convert each inputted characeter into its corresponding digit
-      var word = inputs.elements[0].value;
+      var word = inputs.value;
       word = word.toLowerCase().replace(/[^a-z]+/g, '');
       var chars = word.split("").reverse();
 
@@ -107,6 +107,8 @@
         }
       }
     }
+
+    makePatch()
   </script>
 
 
