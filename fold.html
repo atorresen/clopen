@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <title>fold</title>
+</head>
+
+<body>
+
+  <div class="graphic" style="margin: 10px">
+    <br>
+      <textarea id="in" rows="1" cols = "20" oninput="f()"
+          style="font-size: 1.25rem; resize: none"
+      >invitation</textarea>
+      <br>
+      <canvas id="c" width="1200" height="300"></canvas>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+      const abc = "abcdefghijklmnopqrstuvwxyz".split("");
+      const width = 1200;
+      function f() {
+          var text = document.getElementById("in");
+          var chars = text.value.toLowerCase().split("");
+          var digits = [];
+          for (var i = 0; i < chars.length; i++) {
+              var c = chars[i];
+              var d = abc.indexOf(c) + 1;
+              var b = d.toString(2).split("");
+              digits = digits.concat(b);
+          };
+          const midline = 100;
+          const scale = 30;
+          var points = [ [0, midline] ];
+          for (var i = 0; i < digits.length; i++) {
+              var last = points.slice(-1)[0];
+              var val = scale * Number(digits[i]);
+              if ( val == 0 ) { val = 2 * scale; };
+              var m = [0, 0];
+              if ( (i % 2) == 0 ) {
+                  m = [val, 0]
+              } else if ( last[1] > midline ) {
+                  m = [0, -val]
+              } else if ( last[1] < midline ) {
+                  m = [0, val]
+              } else if ( points[i] == 1 ) {
+                  m = [0, -val]
+              } else {
+                  m = [0, val]
+              };
+              if (last[0] + m[0] >= width) {
+                  text.disabled = true;
+              } else {
+                  points.push( [last[0] + m[0], last[1] + m[1]] );
+              };
+          };
+          text.disabled = false;
+          text.cols = Math.max(20, chars.length);
+          var canvas = document.getElementById("c");
+          var c = canvas.getContext("2d");
+          c.beginPath();
+          c.fillStyle = "#fff";
+          c.fillRect(0, 0, width, width);
+          c.fillStyle = "#444";
+          c.moveTo(points[0][0], points[0][1]);
+          for (i = 0; i < points.length; i++) {
+              c.lineTo(points[i][0], points[i][1]);
+          }
+          c.stroke()
+      };
+      f()
+  </script>
+
+</body>
+
+</html>

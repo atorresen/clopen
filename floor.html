@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <script src="p5/p5.js"></script>
+
+  <title>floor</title>
+</head>
+
+<body>
+
+
+  <div class="graphic" id="floorGraphic"></div>
+
+  <div class="pageButton">
+    <h1 id="climbButton" onclick="climb()">climb</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <script>
+    let w = 400;
+    let h = 600;
+
+    function setup() {
+      var myCanvas = createCanvas(w, h, WEBGL);
+      myCanvas.parent("floorGraphic");
+    }
+
+    let numStaircases = 1;
+
+    let xStarts, yStarts, xDirs, yDirs, colorVals;
+
+    function climb() {
+      numStaircases = numStaircases + 1;
+      xStarts = randomN(-w/4, w/4, numStaircases);
+      yStarts = randomN(-h/3, 2*h, numStaircases);
+      xDirs = randomN(-0.25, 0, numStaircases);
+      yDirs = randomN(-0.1, 0.15, numStaircases);
+      colorVals = randomColors(numStaircases);
+    }
+    climb();
+
+    function draw() {
+      background(20);
+      for(let i = 0; i < numStaircases; i++) {
+        stairCase(
+          xStarts[i], yStarts[i],
+          xDirs[i], yDirs[i],
+          3 * i,
+          colorVals[i]
+        )
+      }
+    }
+
+    function stairCase(x0, y0, xdir, ydir, start, cVals) {
+      let axis = createVector(xdir, ydir, 0);
+      push();
+      fill(cVals[0], cVals[1], cVals[2], 100);
+      stroke(cVals[0], cVals[1], cVals[2]);
+      rotate(PI / 4, axis);
+      translate(x0, y0);
+      for (let i = 0; i < second(); i++) {
+        if (i > start) {
+          box(50, 10, 10);
+        }
+        translate(0, -10, -10);
+      }
+      pop();
+    }
+
+    function randomN(min, max, n) {
+      let res = [];
+      for (let i = 0; i < n; i++) {
+        res.push(Math.random() * (max - min) + min)
+      };
+      return res
+    }
+
+    function randomColors(n) {
+      let res = [];
+      for (let i = 0; i < n; i++) {
+        res.push([
+            Math.floor(Math.random() * (150 - 50) + 50),
+            Math.floor(Math.random() * (150 - 50) + 50),
+            Math.floor(Math.random() * (150 - 50) + 50)
+          ])
+      };
+      return res
+    }
+
+  </script>
+
+</body>
+
+</html>
