@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icon.ico">
+
+  <title>prime</title>
+</head>
+
+<body>
+
+  <div class="graphic" id="d" style="max-width: 800px">
+    <canvas id="c" height="300px" width="300px"></canvas>
+    <p id="m"></p>
+    <p id="n"><p>
+  </div>
+
+  <div class="pageButton">
+    <button onclick="f(2)" style="background-color:#f00"><h3>2</h3></button>
+    <button onclick="f(3)" style="background-color:#0f0"><h3>3</h3></button>
+    <button onclick="f(5)" style="background-color:#00f;color:#aaa"><h3>4</h3></button>
+    <button onclick="f(7)" style="background-color:#ff0"><h3>7</h3></button>
+    <button onclick="f(11)" style="background-color:#f0f"><h3>11</h3></button>
+    <button onclick="f(13)" style="background-color:#0ff"><h3>13</h3></button>
+    <button onclick="f(17)" style="background-color:#000;color:#aaa"><h3>17</h3></button>
+    <h1 onclick="sv()">save</h1>
+    <h1 onclick="rs()">clear</h1>
+  </div>
+
+  <div class="backButton"><a href="index.html">back</a></div>
+
+  <div id="b"></div>
+
+  <script>
+	let c=document.getElementById("c");
+	let ctx=c.getContext("2d",{willReadFrequently:true});
+	let d=300;
+	let n=1;
+	let m=[];
+	let res="";
+	function f(p) {
+		n=n*p;
+		if(p > 1) {
+			m.push(p);
+			document.getElementById("m").innerText=(m.join(" × "));
+			document.getElementById("n").innerText="= "+n;
+		};
+		let r=[255,255,255];
+		switch (p) {
+			case 2:r=[255,0,0];break;
+			case 3:r=[0,255,0];break;
+			case 5:r=[0,0,255];break;
+			case 7:r=[255,255,0];break;
+			case 11:r=[255,0,255];break;
+			case 13:r=[0,255,255];break;
+			case 17:r=[0,0,0];break;
+		};
+		ctx.fillStyle="rgb("+r[0]+" "+r[1]+" "+r[2]+"/"+100/(Math.max(m.length,1))+"%)";
+		ctx.fillRect(0,0,d,d);
+	};
+	function rs() {
+		n=1; m=[];
+		f(1);
+		document.getElementById("m").innerText="";
+		document.getElementById("n").innerText="";
+	};
+	function sv() {
+		let p=document.createElement("p");
+		res=ctx.getImageData(17,17,1,1).data;
+		p.style="background-color:rgb("+res[0]+" "+res[1]+" "+res[2]+")";
+		p.innerText=n;
+		document.getElementById("b").appendChild(p);
+	};
+	rs();
+</script>
+
+</body>
+
+</html>
